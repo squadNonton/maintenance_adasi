@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-style layout-wide  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="horizontal-menu-template-dark">
+<html lang="en" class="dark-style layout-wide  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="{{asset('assets')}}/" data-template="horizontal-menu-template-dark">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
         <title>Login | Digital Maintenance Systeam</title>
-
-
         <meta name="description" content="Digital Maintenance Systeam || PT. Astra Daido Steel Indonesia" />
         <meta name="keywords" content="Digital Maintenance Systeam">
         <script>
