@@ -801,7 +801,7 @@
     <!--/ Source Visit -->
 
     <!-- Projects table -->
-    <div class="col-12 col-xl-8 col-sm-12 order-1 order-lg-2 mb-4 mb-lg-0">
+    {{-- <div class="col-12 col-xl-8 col-sm-12 order-1 order-lg-2 mb-4 mb-lg-0">
         <div class="card">
             <div class="card-datatable table-responsive">
                 <table class="datatables-projects table border-top">
@@ -819,7 +819,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--/ Projects table -->
 </div>
 
