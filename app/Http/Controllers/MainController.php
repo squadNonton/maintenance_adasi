@@ -27,6 +27,17 @@ class MainController extends Controller
 
     }
 
+    // Corrective
+    function createcorrective() : object {
+
+        $data = array(
+            'title'     => 'Corrective',
+        );
+     
+        return view('Corrective.create')->with($data);
+
+    }
+    // End Corrective
 
 
 }

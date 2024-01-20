@@ -78,18 +78,28 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="" class="menu-link">
+                                <a href="{{route('createcorrective')}}" class="menu-link">
                                     <div data-i18n="Create Corrective">Create Corrective</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a href="" class="menu-link">
-                                    <div data-i18n="Corrective Release">Corrective Release</div>
+                                    <div data-i18n="Draft Release">Draft Corrective</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a href="" class="menu-link">
                                     <div data-i18n="Corrective Action">Corrective Action</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="" class="menu-link">
+                                    <div data-i18n="Finished Corrective">Finished Corrective</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="" class="menu-link">
+                                    <div data-i18n="Corrective Waiting Closed">Corrective Waiting Closed</div>
                                 </a>
                             </li>
                         </ul>

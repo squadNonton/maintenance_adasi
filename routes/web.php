@@ -24,3 +24,4 @@ Route::post('login', [AuthController::class, 'login'])->name('login_post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('dasbor', [MainController::class, 'dasbor'])->name('dasbor');
+Route::get('createcorrective', [MainController::class, 'createcorrective'])->name('createcorrective');
