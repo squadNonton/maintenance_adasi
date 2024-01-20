@@ -67,7 +67,7 @@
                 </div>
                 <div class="mb-3">
                     <button type="button" class="btn btn-primary waves-effect waves-light w-100">
-                        <span class="fa-solid fa-qrcode me-3"></span>Create Corrective Tes
+                        <span class="fa-solid fa-file me-3"></span>Create Corrective Tes
                     </button>
                 </div>
             </div>
