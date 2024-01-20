@@ -22,5 +22,9 @@ use App\Http\Controllers\MainController;
 Route::get('/', [AuthController::class, 'ShowFormLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login_post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
+//Dashboard
 Route::get('dasbor', [MainController::class, 'dasbor'])->name('dasbor');
+
+//Tabel View Menu Maintenance
+Route::get('DashboardMaintenance', [MainController::class, 'DashboardMaintenance'])->name('DashboardMaintenance');
+Route::get('DashboardKlaimhandling', [MainController::class, 'DashboardKlaimhandling'])->name('DashboardKlaimhandling');

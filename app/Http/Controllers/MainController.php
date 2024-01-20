@@ -17,16 +17,42 @@ use DB;
 class MainController extends Controller
 {
 
-    function dasbor() : object {
+    // function dasbor(): object
+    // {
+
+    //     $data = array(
+    //         'title'     => 'Dashboard',
+    //     );
+
+    //     return view('Dashboard.list')->with($data);
+    // }
+    function dasbor(): object
+    {
 
         $data = array(
             'title'     => 'Dashboard',
         );
-     
-        return view('Dashboard.list')->with($data);
 
+        return view('Dashboard.list')->with($data);
     }
 
+    function DashboardMaintenance(): object
+    {
 
+        $data = array(
+            'title'     => 'Tabel View Maintenance',
+        );
 
+        return view('Dashboard.maintenance')->with($data);
+    }
+
+    function DashboardKlaimhandling(): object
+    {
+
+        $data = array(
+            'title'     => 'Tabel View Klaim Handling',
+        );
+
+        return view('Dashboard.klaimhandling')->with($data);
+    }
 }
