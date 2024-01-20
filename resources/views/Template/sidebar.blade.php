@@ -6,7 +6,7 @@
             <li class="menu-item active">
                 <a href="{{ route('dasbor') }}" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                    <div data-i18n="Dashboards">Dashboards</div>
+                    <div data-i18n="Dashboards">Dashboard</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item active">
