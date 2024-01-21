@@ -2,6 +2,7 @@
 <html lang="en" class="dark-style layout-menu-fixed layout-compact " dir="ltr" data-theme="theme-default" data-assets-path="{{asset('assets')}}/" data-template="horizontal-menu-template-dark">
     <head>
         <meta charset="utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
         <title>Dashboard | DMS - PT. Astra Daido Steel Indonesia</title>
         <meta name="description" content="Digital Maintenance Systeam || PT. Astra Daido Steel Indonesia" />
@@ -46,11 +47,14 @@
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/node-waves/node-waves.css')}}"/>
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}"/>
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/typeahead-js/typeahead.css')}}"/>
+        <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/swiper/swiper.css')}}"/>
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
         <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+        <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 
         <!-- Page CSS -->
         <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/cards-advance.css')}}"/>
@@ -62,6 +66,34 @@
         <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script>
         <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
         <script src="{{asset('assets/js/config.js')}}"></script>
+
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
+        <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/node-waves/node-waves.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/hammer/hammer.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/i18n/i18n.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/typeahead-js/typeahead.js')}}"></script>
+        <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+        <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+        <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+        <!-- Main JS -->
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
     </head>
 
     <body>
@@ -117,23 +149,6 @@
 
         <!--/ Layout wrapper -->
         <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
-        <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/node-waves/node-waves.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/hammer/hammer.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/i18n/i18n.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/typeahead-js/typeahead.js')}}"></script>
-        <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
-        <!-- endbuild -->
-
-        <!-- Vendors JS -->
-        <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
-        <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
-        <!-- Main JS -->
         <script src="{{asset('assets/js/main.js')}}"></script>
         <!-- Page JS -->
         <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>

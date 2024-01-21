@@ -3,13 +3,13 @@
     <div class="container-xxl d-flex h-100">
         <ul class="menu-inner">
             <!-- Dashboards -->
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
                     <div data-i18n="Dashboards">Dashboards</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-chart-pie-2"></i>
                             <div data-i18n="Maintenance">Maintenance</div>
@@ -25,32 +25,38 @@
             </li>
 
             <!-- Pages -->
-            <li class="menu-item">
+            @php
+                $array_route    = ['manageusers','managemachine','managerole'];
+            @endphp
+            <li class="menu-item @if (in_array(Route::currentRouteName() , $array_route)) active @endif">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-file"></i>
                     <div data-i18n="Manage Data">Manage Data</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
+                    @php
+                        $array_route    = ['manageusers','managerole'];
+                    @endphp
+                    <li class="menu-item @if (in_array(Route::currentRouteName() , $array_route)) active @endif">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons ti ti-user-circle"></i>
                             <div data-i18n="Manage User">Manage User</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
+                            <li class="menu-item @if (Route::currentRouteName()=='managerole') active @endif">
+                                <a href="{{route('managerole')}}" class="menu-link">
                                     <div data-i18n="Role">Role</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
+                            <li class="menu-item @if (Route::currentRouteName()=='manageusers') active @endif">
+                                <a href="{{route('manageusers')}}" class="menu-link">
                                     <div data-i18n="Users">Users</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-link">
+                    <li class="menu-item @if (Route::currentRouteName()=='managemachine') active @endif">
+                        <a href="{{route('managemachine')}}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-help"></i>
                             <div data-i18n="Manage Machine">Manage Machine</div>
                         </a>
@@ -68,7 +74,7 @@
             <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-file"></i>
-                    <div data-i18n="Maintenance">Maintenance</div>
+                    <div data-i18n="Production">Production</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
@@ -84,27 +90,12 @@
                             </li>
                             <li class="menu-item">
                                 <a href="" class="menu-link">
-                                    <div data-i18n="Draft Release">Draft Corrective</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
-                                    <div data-i18n="Corrective Action">Corrective Action</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
-                                    <div data-i18n="Finished Corrective">Finished Corrective</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
                                     <div data-i18n="Corrective Waiting Closed">Corrective Waiting Closed</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons ti ti-user-circle"></i>
                             <div data-i18n="Preventive">Preventive</div>
@@ -126,6 +117,42 @@
                                 </a>
                             </li>
                         </ul>
+                    </li> --}}
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-file"></i>
+                    <div data-i18n="Maintenance">Maintenance</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{route('actioncorrective')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-help"></i>
+                            <div data-i18n="Corrective Action">Corrective Action</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{route('actioncorrective')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-help"></i>
+                            <div data-i18n="Preventive Action">Preventive Action</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-file"></i>
+                    <div data-i18n="Deptman">Deptman</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{route('actioncorrective')}}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-help"></i>
+                            <div data-i18n="Finished Corrective">Finished Corrective</div>
+                        </a>
                     </li>
                 </ul>
             </li>

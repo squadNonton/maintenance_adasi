@@ -80,17 +80,15 @@
                             <h4 class="mb-1 pt-2">Welcome to DMS! 👋</h4>
                             <p class="mb-4">Digital Maintenance Systeam</p>
 
-                            <form id="formAuthentication" class="mb-3" action="{{route('dasbor')}}" method="GET">
+                            <form id="" class="mb-3" action="{{route('login_post')}}" method="POST">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="" placeholder="Enter your username" autofocus>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus>
                                 </div>
                                 <div class="mb-3 form-password-toggle">
                                     <div class="d-flex justify-content-between">
                                         <label class="form-label" for="password">Password</label>
-                                        <a href="">
-                                            <small>Forgot Password?</small>
-                                        </a>
                                     </div>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password" aria-describedby="password" />
