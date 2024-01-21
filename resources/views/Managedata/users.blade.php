@@ -180,7 +180,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Role</label>
-                    <select id="" class="select-2-add form-select form-select-lg" data-allow-clear="true" data-name="edit_role_id">
+                    <select id="" class="select-2-edit form-select form-select-lg" data-allow-clear="true" data-name="edit_role_id">
                         <option value="">-- Select Role</option>
                         @foreach($role as $key => $value)
                             <option value="{{$value->id}}">{{$value->name}}</option>

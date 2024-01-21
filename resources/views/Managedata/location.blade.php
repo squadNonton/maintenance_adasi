@@ -2,18 +2,18 @@
 @section('content')
 
 <h4 class="py-3 mb-3">
-    <span class="text-muted fw-light">Manage Data /</span> Role
+    <span class="text-muted fw-light">Manage Data /</span> Location
 </h4>
 <div class="card">
     <div class="d-flex justify-content-end flex-sm-row flex-column p-3">
-        <button class="btn btn-label-primary me-2 waves-effect" type="button" data-name="add"><i class="ti ti-plus"></i>Add Role</button>
+        <button class="btn btn-label-primary me-2 waves-effect" type="button" data-name="add"><i class="ti ti-plus"></i>Add Location</button>
     </div>
     <div class="card-datatable dataTable_select text-nowrap">
         <table class="dt-select-table table">
             <thead>
                 <tr>
                     <th>NO</th>
-                    <th>Role Name</th>
+                    <th>Location Name</th>
                     <th>Last Update</th>
                     <th>Action</th>
                 </tr>
@@ -47,7 +47,7 @@
             <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
-                    <h3 class="mb-2">Add Role</h3>
+                    <h3 class="mb-2">Add Location</h3>
                 </div>
             
                 <div class="mb-3">
@@ -71,7 +71,7 @@
             <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
-                    <h3 class="mb-2">Edit Role</h3>
+                    <h3 class="mb-2">Edit Location</h3>
                 </div>
             
                 <div class="mb-3">

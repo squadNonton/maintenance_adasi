@@ -9,6 +9,7 @@ use \Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\user;
 use Auth;
 use Hash;
@@ -20,7 +21,6 @@ class MainController extends Controller
 
     function dasbor() : object {
         $idn_user   = idn_user(auth::user()->id);
-
         $data = array(
             'title'     => 'Dashboard',
             'idn_user'  => $idn_user
@@ -33,7 +33,6 @@ class MainController extends Controller
     // Manage Data
     function managerole() : object {
         $idn_user   = idn_user(auth::user()->id);
-
         $arr    = DB::table('mst_role')->where('is_active', 1)->get();
         $data = array(
             'title'     => 'Manage Data',
@@ -60,11 +59,42 @@ class MainController extends Controller
 
     }
 
-    function managemachine() : object {
+    function managelocation() : object {
         $idn_user   = idn_user(auth::user()->id);
-
+        $arr    = DB::table('mst_location')->where('is_active', 1)->get();
         $data = array(
             'title'     => 'Manage Data',
+            'arr'       => $arr,
+            'idn_user'  => $idn_user
+        );
+     
+        return view('Managedata.location')->with($data);
+
+    }
+
+    function managesection() : object {
+        $idn_user   = idn_user(auth::user()->id);
+        $arr    = DB::table('mst_section')->where('is_active', 1)->get();
+        $data = array(
+            'title'     => 'Manage Data',
+            'arr'       => $arr,
+            'idn_user'  => $idn_user
+        );
+     
+        return view('Managedata.section')->with($data);
+
+    }
+
+    function managemachine() : object {
+        $idn_user   = idn_user(auth::user()->id);
+        $arr        = DB::table('mst_machine')->select('mst_machine.*', 'mst_location.name as location', 'mst_section.name as section')->leftJoin('mst_location', 'mst_location.id', '=', 'mst_machine.id_location')->leftJoin('mst_section', 'mst_section.id', '=', 'mst_machine.id_section')->where('mst_machine.is_active', 1)->get();
+        $section    = DB::table('mst_section')->where('is_active', 1)->get();
+        $location   = DB::table('mst_location')->where('is_active', 1)->get();
+        $data = array(
+            'title'     => 'Manage Data',
+            'arr'       => $arr,
+            'section'   => $section,
+            'location'  => $location,
             'idn_user'  => $idn_user
         );
      
@@ -131,16 +161,16 @@ class MainController extends Controller
             $request->file('add_image')->move($path, $fileName);
 
             return response($fileName);
-        }elseif($request->hasFile('add_file')){
+        }elseif($request->hasFile('add_mc')){
             $fourRandomDigit = rand(10,99999);
-            $photo      = $request->file('add_file');
+            $photo      = $request->file('add_mc');
             $fileName   = $fourRandomDigit.'.'.$photo->getClientOriginalExtension();
 
-            $path = public_path().'/assets/file/';
+            $path = public_path().'/assets/machine/';
 
             File::makeDirectory($path, 0777, true, true);
 
-            $request->file('add_file')->move($path, $fileName);
+            $request->file('add_mc')->move($path, $fileName);
 
             return response($fileName);
         }else{
@@ -257,6 +287,22 @@ class MainController extends Controller
         $table  = $request['table'];
         $arr    = DB::select("SELECT * FROM $table WHERE $field=$id AND is_active=1 ");
         return response($arr);
+    }
+
+    // Generate QR
+    function qrgeneratemachine(Request $request) : object {
+        $arr    = DB::select("SELECT * FROM mst_machine");
+        $jml    = count($arr)+1;
+
+        $qrname = date('Y').'.'.date('m').'.'.sprintf("%09d", $jml);
+        $qrCode = QrCode::size(300)->generate($qrname);
+        $filePath = 'assets/qr/'.$qrname.'.svg';
+        file_put_contents(public_path($filePath), $qrCode);
+
+        $dt     = array(
+            'qrname'    => $qrname
+        );
+        return response($dt);
     }
 
 }

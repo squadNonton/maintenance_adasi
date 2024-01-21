@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
     // Manage Data
     Route::get('managerole', [MainController::class, 'managerole'])->name('managerole');
     Route::get('manageusers', [MainController::class, 'manageusers'])->name('manageusers');
+    Route::get('managelocation', [MainController::class, 'managelocation'])->name('managelocation');
+    Route::get('managesection', [MainController::class, 'managesection'])->name('managesection');
+    Route::get('qrgeneratemachine', [MainController::class, 'qrgeneratemachine'])->name('qrgeneratemachine');
     Route::get('managemachine', [MainController::class, 'managemachine'])->name('managemachine');
     // End Manage
 

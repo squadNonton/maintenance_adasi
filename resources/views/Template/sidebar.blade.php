@@ -26,7 +26,7 @@
 
             <!-- Pages -->
             @php
-                $array_route    = ['manageusers','managemachine','managerole'];
+                $array_route    = ['manageusers','managerole','managelocation','managesection','managemachine'];
             @endphp
             <li class="menu-item @if (in_array(Route::currentRouteName() , $array_route)) active @endif">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -55,11 +55,31 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item @if (Route::currentRouteName()=='managemachine') active @endif">
-                        <a href="{{route('managemachine')}}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-help"></i>
+                    @php
+                        $array_route    = ['managelocation','managesection','managemachine'];
+                    @endphp
+                    <li class="menu-item @if (in_array(Route::currentRouteName() , $array_route)) active @endif">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-user-circle"></i>
                             <div data-i18n="Manage Machine">Manage Machine</div>
                         </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item @if (Route::currentRouteName()=='managelocation') active @endif">
+                                <a href="{{route('managelocation')}}" class="menu-link">
+                                    <div data-i18n="Location">Location</div>
+                                </a>
+                            </li>
+                            <li class="menu-item @if (Route::currentRouteName()=='managesection') active @endif">
+                                <a href="{{route('managesection')}}" class="menu-link">
+                                    <div data-i18n="Section">Section</div>
+                                </a>
+                            </li>
+                            <li class="menu-item @if (Route::currentRouteName()=='managemachine') active @endif">
+                                <a href="{{route('managemachine')}}" class="menu-link">
+                                    <div data-i18n="Machine">Machine</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="menu-item">
                         <a href="" class="menu-link">
