@@ -21,23 +21,35 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i = 1; $i < 100; $i++)
+                @php
+                    $no = 1;
+                @endphp
+                @foreach($arr as $key => $value)
                     <tr>
-                        <td>{{$i}}</td>
-                        <td>Mugi Pram</td>
-                        <td>Sabtu, 20 Januari 2024 18:00</td>
-                        <td>Cutting</td>
-                        <td>H1010</td>
-                        <td>CC2</td>
-                        <td>Deltamas</td>
+                        <td>{{$no++}}</td>
+                        <td>{{$value->pic_name}}</td>
                         <td>
-                            <span class="badge rounded-pill bg-label-primary">Draft</span>
+                            {{ \Carbon\Carbon::parse($value->date_create)->isoFormat('dddd, D MMMM YYYY HH:mm:ss') }}
+                        </td>
+                        <td>{{$value->section}}</td>
+                        <td>{{$value->mc_type}}</td>
+                        <td>{{$value->mc_name}}</td>
+                        <td>{{$value->location}}</td>
+                        <td>
+                            <span class="badge rounded-pill bg-label-{{$value->st_color}}">{{$value->st_name}}</span>
                         </td>
                         <td></td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.dt-select-table').DataTable();
+    });
+</script>
+
 @stop
