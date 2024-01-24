@@ -48,4 +48,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('createcorrective', [MainController::class, 'createcorrective'])->name('createcorrective');
     Route::get('actioncorrective', [MainController::class, 'actioncorrective'])->name('actioncorrective');
+
+    // Sales
+    Route::get('menusales', [MainController::class, 'menusales'])->name('menusales');
+    // End Sales
 });

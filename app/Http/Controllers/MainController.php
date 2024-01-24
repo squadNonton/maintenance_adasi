@@ -19,19 +19,20 @@ use DB;
 class MainController extends Controller
 {
 
-    function dasbor() : object {
+    function dasbor(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $data = array(
             'title'     => 'Dashboard',
             'idn_user'  => $idn_user
         );
-     
-        return view('Dashboard.list')->with($data);
 
+        return view('Dashboard.list')->with($data);
     }
 
     // Manage Data
-    function managerole() : object {
+    function managerole(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr    = DB::table('mst_role')->where('is_active', 1)->get();
         $data = array(
@@ -39,12 +40,12 @@ class MainController extends Controller
             'arr'       => $arr,
             'idn_user'  => $idn_user
         );
-     
-        return view('Managedata.role')->with($data);
 
+        return view('Managedata.role')->with($data);
     }
 
-    function manageusers() : object {
+    function manageusers(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr    = DB::table('users')->select('users.*', 'mst_role.name as level')->leftJoin('mst_role', 'mst_role.id', '=', 'users.role_id')->where('users.is_active', 1)->get();
         $role   = DB::table('mst_role')->where('is_active', 1)->get();
@@ -54,12 +55,12 @@ class MainController extends Controller
             'role'  => $role,
             'idn_user'  => $idn_user
         );
-     
-        return view('Managedata.users')->with($data);
 
+        return view('Managedata.users')->with($data);
     }
 
-    function managelocation() : object {
+    function managelocation(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr    = DB::table('mst_location')->where('is_active', 1)->get();
         $data = array(
@@ -67,12 +68,12 @@ class MainController extends Controller
             'arr'       => $arr,
             'idn_user'  => $idn_user
         );
-     
-        return view('Managedata.location')->with($data);
 
+        return view('Managedata.location')->with($data);
     }
 
-    function managesection() : object {
+    function managesection(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr    = DB::table('mst_section')->where('is_active', 1)->get();
         $data = array(
@@ -80,12 +81,12 @@ class MainController extends Controller
             'arr'       => $arr,
             'idn_user'  => $idn_user
         );
-     
-        return view('Managedata.section')->with($data);
 
+        return view('Managedata.section')->with($data);
     }
 
-    function managemachine() : object {
+    function managemachine(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr        = DB::table('mst_machine')->select('mst_machine.*', 'mst_location.name as location', 'mst_section.name as section')->leftJoin('mst_location', 'mst_location.id', '=', 'mst_machine.id_location')->leftJoin('mst_section', 'mst_section.id', '=', 'mst_machine.id_section')->where('mst_machine.is_active', 1)->get();
         $section    = DB::table('mst_section')->where('is_active', 1)->get();
@@ -97,99 +98,99 @@ class MainController extends Controller
             'location'  => $location,
             'idn_user'  => $idn_user
         );
-     
-        return view('Managedata.machine')->with($data);
 
+        return view('Managedata.machine')->with($data);
     }
 
     // End Manage Data
 
     // Corrective
-    function createcorrective() : object {
+    function createcorrective(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
 
         $data = array(
             'title'     => 'Corrective',
             'idn_user'  => $idn_user
         );
-     
-        return view('Corrective.create')->with($data);
 
+        return view('Corrective.create')->with($data);
     }
 
-    function actioncorrective() : object {
+    function actioncorrective(): object
+    {
         $idn_user   = idn_user(auth::user()->id);
         $arr        = DB::table('trx_corrective')->select('trx_corrective.*', 'mst_machine.name as mc_name', 'mst_machine.type as mc_type', 'mst_location.name as location', 'mst_section.name as section', 'users.name as pic_name', 'mst_status.name as st_name', 'mst_status.color as st_color')
-                                ->leftJoin('mst_status', 'mst_status.id', '=', 'trx_corrective.id_status')
-                                ->leftJoin('mst_machine', 'mst_machine.id', '=', 'trx_corrective.id_machine')
-                                ->leftJoin('mst_section', 'mst_section.id', '=', 'mst_machine.id_section')
-                                ->leftJoin('mst_location', 'mst_location.id', '=', 'mst_machine.id_location')
-                                ->leftJoin('users', 'users.id', '=', 'trx_corrective.id_user')->orderBy('trx_corrective.date_create', 'desc')->get();
+            ->leftJoin('mst_status', 'mst_status.id', '=', 'trx_corrective.id_status')
+            ->leftJoin('mst_machine', 'mst_machine.id', '=', 'trx_corrective.id_machine')
+            ->leftJoin('mst_section', 'mst_section.id', '=', 'mst_machine.id_section')
+            ->leftJoin('mst_location', 'mst_location.id', '=', 'mst_machine.id_location')
+            ->leftJoin('users', 'users.id', '=', 'trx_corrective.id_user')->orderBy('trx_corrective.date_create', 'desc')->get();
         $data = array(
             'title'     => 'Corrective',
             'arr'       => $arr,
             'idn_user'  => $idn_user
         );
-     
-        return view('Corrective.action')->with($data);
 
+        return view('Corrective.action')->with($data);
     }
 
-    
+
     // End Corrective
 
 
 
     // Upload Image
-    function upload_profile(Request $request) : object {
+    function upload_profile(Request $request): object
+    {
 
-        if($request->hasFile('add_foto')){
-            $fourRandomDigit = rand(10,99999);
+        if ($request->hasFile('add_foto')) {
+            $fourRandomDigit = rand(10, 99999);
             $photo      = $request->file('add_foto');
-            $fileName   = $fourRandomDigit.'.'.$photo->getClientOriginalExtension();
+            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
 
-            $path = public_path().'/assets/profiles/';
+            $path = public_path() . '/assets/profiles/';
 
             File::makeDirectory($path, 0777, true, true);
 
             $request->file('add_foto')->move($path, $fileName);
 
             return response($fileName);
-        }elseif($request->hasFile('add_image')){
-            $fourRandomDigit = rand(10,99999);
+        } elseif ($request->hasFile('add_image')) {
+            $fourRandomDigit = rand(10, 99999);
             $photo      = $request->file('add_image');
-            $fileName   = $fourRandomDigit.'.'.$photo->getClientOriginalExtension();
+            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
 
-            $path = public_path().'/assets/corrective/';
+            $path = public_path() . '/assets/corrective/';
 
             File::makeDirectory($path, 0777, true, true);
 
             $request->file('add_image')->move($path, $fileName);
 
             return response($fileName);
-        }elseif($request->hasFile('add_mc')){
-            $fourRandomDigit = rand(10,99999);
+        } elseif ($request->hasFile('add_mc')) {
+            $fourRandomDigit = rand(10, 99999);
             $photo      = $request->file('add_mc');
-            $fileName   = $fourRandomDigit.'.'.$photo->getClientOriginalExtension();
+            $fileName   = $fourRandomDigit . '.' . $photo->getClientOriginalExtension();
 
-            $path = public_path().'/assets/machine/';
+            $path = public_path() . '/assets/machine/';
 
             File::makeDirectory($path, 0777, true, true);
 
             $request->file('add_mc')->move($path, $fileName);
 
             return response($fileName);
-        }else{
+        } else {
             return response('Failed');
         }
-
     }
 
     // Action Add
-    function actionadd(Request $request) : object {
+    function actionadd(Request $request): object
+    {
         $table      = $request['table'];
         $dt         = $request['data'];
-        if($table == 'users'){
+        if ($table == 'users') {
             $data   = array(
                 'username'  => $dt['username'],
                 'password'  => Hash::make($dt['password']),
@@ -203,7 +204,7 @@ class MainController extends Controller
                 'is_active' => 1,
                 'update_by' => auth::user()->id,
             );
-        }else{
+        } else {
             $data   = $request['data'];
         }
         // $data       = $request['data'];
@@ -212,12 +213,13 @@ class MainController extends Controller
     }
 
     // Action Edit
-    function actionedit(Request $request) : object {
+    function actionedit(Request $request): object
+    {
         $table      = $request['table'];
         $id         = $request['id'];
         $whr        = $request['whr'];
         $dt         = $request['dats'];
-        if($table == 'users'){
+        if ($table == 'users') {
             $data   = array(
                 'username'  => $dt['username'],
                 'password'  => Hash::make($dt['password']),
@@ -230,7 +232,7 @@ class MainController extends Controller
                 'status'    => 0,
                 'update_by' => auth::user()->id,
             );
-        }else{
+        } else {
             $data   = $request['dats'];
         }
 
@@ -238,7 +240,8 @@ class MainController extends Controller
         return response('success');
     }
 
-    function actioneditwmulti(Request $request) : object {
+    function actioneditwmulti(Request $request): object
+    {
         $table      = $request['table'];
         $id1        = $request['id1'];
         $whr1       = $request['whr1'];
@@ -251,7 +254,8 @@ class MainController extends Controller
     }
 
     // Action Delete
-    function actiondelete(Request $request) : object {
+    function actiondelete(Request $request): object
+    {
         $table      = $request['table'];
         $id         = $request['id'];
         $whr        = $request['whr'];
@@ -264,7 +268,8 @@ class MainController extends Controller
     }
 
     // Action Show Data
-    function actionshowdata(Request $request) : object {
+    function actionshowdata(Request $request): object
+    {
         $id     = $request['id'];
         $field  = $request['field'];
         $table  = $request['table'];
@@ -272,7 +277,8 @@ class MainController extends Controller
         return response($arr);
     }
 
-    function actionshowdatawmulti(Request $request) : object {
+    function actionshowdatawmulti(Request $request): object
+    {
         $id1     = $request['id1'];
         $field1  = $request['field1'];
         $id2     = $request['id2'];
@@ -283,10 +289,11 @@ class MainController extends Controller
     }
 
     // Action List Data
-    function actionlistdata(Request $request) : object {
-        if($request['id'] == 0 || $request['id'] == null){
+    function actionlistdata(Request $request): object
+    {
+        if ($request['id'] == 0 || $request['id'] == null) {
             $id     = 1;
-        }else{
+        } else {
             $id     = $request['id'];
         }
         $field  = $request['field'];
@@ -296,13 +303,14 @@ class MainController extends Controller
     }
 
     // Generate QR
-    function qrgeneratemachine(Request $request) : object {
+    function qrgeneratemachine(Request $request): object
+    {
         $arr    = DB::select("SELECT * FROM mst_machine");
-        $jml    = count($arr)+1;
+        $jml    = count($arr) + 1;
 
-        $qrname = date('Y').'.'.date('m').'.'.sprintf("%09d", $jml);
+        $qrname = date('Y') . '.' . date('m') . '.' . sprintf("%09d", $jml);
         $qrCode = QrCode::size(300)->generate($qrname);
-        $filePath = 'assets/qr/'.$qrname.'.svg';
+        $filePath = 'assets/qr/' . $qrname . '.svg';
         file_put_contents(public_path($filePath), $qrCode);
 
         $dt     = array(
@@ -311,4 +319,14 @@ class MainController extends Controller
         return response($dt);
     }
 
+    function menusales(): object
+    {
+        $idn_user   = idn_user(auth::user()->id);
+        $data = array(
+            'title'     => 'Sales',
+            'idn_user'  => $idn_user
+        );
+
+        return view('Sales.salesview')->with($data);
+    }
 }
